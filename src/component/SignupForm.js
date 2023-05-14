@@ -9,7 +9,7 @@ import {
 	Link as ChakraLink,
     useToast,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 
 const SignupForm = () => {
 	const [firstName, setFirstName] = useState("");
@@ -49,6 +49,12 @@ const SignupForm = () => {
                         isClosable: true,
                       })
 				}
+                window.location.href = "/"
+                
+     
+
+
+
 			})
 			.catch((err) => {
 				console.log(err);

@@ -9,12 +9,13 @@ import {
 	Link as ChakraLink,
     useToast,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, unstable_HistoryRouter } from "react-router-dom";
 
 const LoginForm = () => {
     const toast = useToast()
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+
 
 	const handleLogin = (e) => {
 		e.preventDefault();
@@ -44,6 +45,9 @@ const LoginForm = () => {
                         duration: 9000,
                         isClosable: true,
                       })
+
+ window.location.href="/home"
+
                 }
 			})
 			.catch((err) => {
