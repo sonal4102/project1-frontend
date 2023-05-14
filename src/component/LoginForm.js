@@ -47,6 +47,7 @@ const LoginForm = () => {
                       })
 
  window.location.href="/home"
+ window.localStorage.setItem("token",data.data)
 
                 }
 			})
