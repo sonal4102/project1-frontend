@@ -49,7 +49,7 @@ const LoginForm = () => {
 						isClosable: true,
 					});
 
-					window.location.href = "/home";
+					window.location.href = "/";
 					window.localStorage.setItem("token", data.data);
 					window.localStorage.setItem("email", data.data.email);
 					window.localStorage.setItem("loggedIn", true);

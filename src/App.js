@@ -25,7 +25,7 @@ const App = () => {
 								}
 							/>
 							<Route path="/signup" element={<SignupForm />} />
-							<Route path="/home" element={<HomePage />} />
+				
 						</Routes>
 					</Router>
 				</Box>
