@@ -48,6 +48,7 @@ const LoginForm = () => {
 
  window.location.href="/home"
  window.localStorage.setItem("token",data.data)
+ window.localStorage.setItem("loggedIn",true)
 
                 }
 			})
