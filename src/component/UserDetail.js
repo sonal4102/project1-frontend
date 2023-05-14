@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Box, Heading, Text } from "@chakra-ui/react";
 
+const deployURL = "https://sonalsingh-project1.onrender.com";
+const deployed = true;
+const API_URL = deployed ? deployURL : "http://localhost:5000";
 function UserDetail() {
 	const [userData, setUserData] = useState("");
 	useEffect(() => {
-		fetch("http://localhost:5000/userData", {
+		fetch(`${API_URL}/userData`, {
 			method: "POST",
 			crossDomain: true,
 			headers: {

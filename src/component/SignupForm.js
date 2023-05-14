@@ -12,6 +12,10 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
+const deployURL = "https://sonalsingh-project1.onrender.com";
+const deployed = true;
+const API_URL = deployed ? deployURL : "http://localhost:5000";
+
 const SignupForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -24,7 +28,7 @@ const SignupForm = () => {
     event.preventDefault();
     setIsLoading(true);
     console.log(firstName, lastName, email, password);
-    fetch("http://localhost:5000/register", {
+    fetch(`${API_URL}/register`, {
       method: "POST",
       crossDomain: true,
       headers: {

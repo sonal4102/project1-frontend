@@ -11,6 +11,10 @@ import {
 } from "@chakra-ui/react";
 import { Link, unstable_HistoryRouter } from "react-router-dom";
 
+const deployURL = "https://sonalsingh-project1.onrender.com";
+const deployed = true;
+const API_URL = deployed ? deployURL : "http://localhost:5000";
+
 const LoginForm = () => {
 	const toast = useToast();
 	const [email, setEmail] = useState("");
@@ -19,7 +23,7 @@ const LoginForm = () => {
 	const handleLogin = (e) => {
 		e.preventDefault();
 
-		fetch("http://localhost:5000/login-user", {
+		fetch(`${API_URL}/login-user`, {
 			method: "POST",
 			crossDomain: true,
 			headers: {

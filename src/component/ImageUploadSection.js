@@ -14,6 +14,10 @@ import {
 import { motion, useAnimation } from "framer-motion";
 import axios from "axios";
 
+
+const deployURL = "https://sonalsingh-project1.onrender.com";
+const deployed = true;
+const API_URL = deployed ? deployURL : "http://localhost:5000";
 export default function ImageUploadSection() {
   const controls = useAnimation();
   const startAnimation = () => controls.start("hover");
@@ -45,7 +49,7 @@ export default function ImageUploadSection() {
 
   function uploadImage() {
     if (image) {
-      fetch("http://localhost:5000/upload-image", {
+      fetch(`${API_URL}/upload-image`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +72,7 @@ export default function ImageUploadSection() {
   }
 
   function getImage() {
-    axios.get('http://localhost:5000/get-image', {
+    axios.get(`${API_URL}/get-image`, {
       params: {
        email:window.localStorage.getItem("email")
       
