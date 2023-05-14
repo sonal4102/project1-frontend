@@ -12,6 +12,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { motion, useAnimation } from "framer-motion";
+import axios from "axios";
 
 export default function ImageUploadSection() {
   const controls = useAnimation();
@@ -34,8 +35,13 @@ export default function ImageUploadSection() {
   }
 
   useEffect(() => {
-    getImage();
+    const interval = setInterval(() => {
+      getImage();
+    }, 1000);
+  
+    return () => clearInterval(interval);
   }, []);
+  
 
   function uploadImage() {
     if (image) {
@@ -47,27 +53,47 @@ export default function ImageUploadSection() {
         },
         body: JSON.stringify({
           base64: image,
+          email: window.localStorage.getItem("email"),
         }),
       })
-        .then((res) => res.json())
+        .then((res) => 
+        
+        res.json())
         .then((data) => {
           console.log(data);
-          getImage(); // Fetch the updated collection of images
-          setImage(""); // Reset the selected image
+          getImage();
+          setImage(""); 
         });
     }
   }
 
   function getImage() {
-    fetch("http://localhost:5000/get-image", {
-      method: "GET",
+    axios.get('http://localhost:5000/get-image', {
+      params: {
+       email:window.localStorage.getItem("email")
+      
+      }
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setAllImage(data.data);
-      });
+    .then(response => {
+      console.log(response.data);
+      setAllImage(response.data.data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
   }
+
+
+  //   fetch("http://localhost:5000/get-image", {
+  //     method: "GET",
+     
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setAllImage(data.data);
+  //     });
+  // }
 
   return (
     <>

@@ -21,7 +21,7 @@ function UserDetail() {
 				console.log(data, "userRegister");
 				if (data.status == "success") {
 					console.log({ data });
-
+					window.localStorage.setItem("email", data.data.email);
 					setUserData(data.data);
 				}
 			})

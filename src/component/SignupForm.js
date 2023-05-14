@@ -50,6 +50,7 @@ const SignupForm = () => {
                       })
 				}
                 window.location.href = "/"
+				window.localStorage.setItem("email", data.data.email);
                 
      
 

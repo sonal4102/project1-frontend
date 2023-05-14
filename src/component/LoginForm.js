@@ -7,15 +7,14 @@ import {
 	Input,
 	Button,
 	Link as ChakraLink,
-    useToast,
+	useToast,
 } from "@chakra-ui/react";
 import { Link, unstable_HistoryRouter } from "react-router-dom";
 
 const LoginForm = () => {
-    const toast = useToast()
+	const toast = useToast();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-
 
 	const handleLogin = (e) => {
 		e.preventDefault();
@@ -36,21 +35,21 @@ const LoginForm = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data, "userRegister");
-                if (data.status == "success") {
-                    toast({
-                        title: 'Login Successful',
-                        position: 'top-right',
-                        description: "You have successfully logged in.",
-                        status: 'success',
-                        duration: 9000,
-                        isClosable: true,
-                      })
+				if (data.status == "success") {
+					toast({
+						title: "Login Successful",
+						position: "top-right",
+						description: "You have successfully logged in.",
+						status: "success",
+						duration: 9000,
+						isClosable: true,
+					});
 
- window.location.href="/home"
- window.localStorage.setItem("token",data.data)
- window.localStorage.setItem("loggedIn",true)
-
-                }
+					window.location.href = "/home";
+					window.localStorage.setItem("token", data.data);
+					window.localStorage.setItem("email", data.data.email);
+					window.localStorage.setItem("loggedIn", true);
+				}
 			})
 			.catch((err) => {
 				console.log(err);
