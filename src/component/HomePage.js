@@ -1,19 +1,36 @@
-import React from 'react';
-import { Box, Center, Container } from '@chakra-ui/react';
+import React, { useState, useEffect } from 'react';
+import { Box, Center, Container, Spinner } from '@chakra-ui/react';
 import ImageUploadSection from './ImageUploadSection';
 import UserDetail from './UserDetail';
 import Logout from './Logout';
 
 function HomePage() {
-  return (
+  const [showSpinner, setShowSpinner] = useState(true);
 
-      <Container>
-        
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowSpinner(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
+
+  return (
+    <Container>
+      {showSpinner ? (
+        <Box height="100vh" display="flex" justifyContent="center" alignItems="center">
+          <Spinner size="xl" />
+        </Box>
+      ) : (
+        <>
           <UserDetail />
           <ImageUploadSection />
- <Logout/>
-      </Container>
-
+          <Logout />
+        </>
+      )}
+    </Container>
   );
 }
 
